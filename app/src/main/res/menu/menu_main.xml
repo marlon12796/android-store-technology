@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/google_maps"
+        android:icon="@drawable/google_maps_svgrepo_com"
+        android:title="@string/google_maps"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/about_us"
+        android:icon="@drawable/about_us"
+        android:title="@string/sobre_nosotros"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/close_up"
+        android:icon="@drawable/close_square_svgrepo_com"
+        android:title="@string/close"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/list_products"
+        android:title="Listar Productos"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/list_ventas_menu"
+        android:title="Listar Ventas"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_ayuda"
+        android:title="Ayuda"
+        app:showAsAction="never"/>
+</menu>

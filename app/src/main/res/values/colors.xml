@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#6200EE</color> <!-- Un tono morado -->
+    <color name="colorPrimaryVariant">#3700B3</color> <!-- Variante más oscura del color primario -->
+    <color name="colorSecondary">#03DAC5</color> <!-- Color secundario -->
+    <color name="colorBackground">#FFFFFF</color> <!-- Fondo blanco -->
+    <color name="colorSurface">#121212</color> <!-- Color para superficies como botones -->
+    <color name="colorOnPrimary">#FFFFFF</color> <!-- Color de texto sobre color primario -->
+    <color name="colorOnSecondary">#000000</color> <!-- Color de texto sobre color secundario -->
+    <color name="colorOnBackground">#000000</color> <!-- Color de texto sobre fondo -->
+    <color name="colorError">#B00020</color> <!-- Color de error -->
+</resources>

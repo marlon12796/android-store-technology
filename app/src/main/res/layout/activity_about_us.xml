@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/about_us"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/top_app_techverse"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:title="Mi Tienda"
+            android:titleTextColor="@android:color/white"
+            app:layout_scrollFlags="enterAlways|scroll" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:id="@+id/title_about_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_app_techverse"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="SOBRE NOSOTROS"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
+    <!-- Imagen del negocio -->
+    <ImageView
+        android:id="@+id/imageView_techverse"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_below="@id/title_about_us"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/illustration_picture" />
+
+    <!-- Descripción del negocio -->
+    <TextView
+        android:id="@+id/text_about_techverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView_techverse"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        android:layout_marginTop="32dp"
+        android:text="TechVerse es una tienda líder en tecnología, ofreciendo los últimos productos en smartphones, laptops, periféricos y más. Nuestro compromiso es brindar innovación y calidad a nuestros clientes."
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="22sp" />
+
+    <!-- Botón de regresar -->
+
+    <include
+        layout="@layout/custom_back_button"
+        android:id="@+id/button_regresar_about"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/text_about_techverse"
+        android:layout_marginTop="40dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/txtCodigoVenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Código de Venta:"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:id="@+id/txtCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliente:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtFechaEmision"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Emisión:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Producto:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subtotal:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtIgv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IGV:"
+        android:textSize="14sp"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total:"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        android:paddingTop="6dp"/>
+</LinearLayout>

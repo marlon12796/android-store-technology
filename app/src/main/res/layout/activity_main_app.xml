@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/top_app"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:title="Mi Tienda"
+            android:titleTextColor="@android:color/white"
+            app:layout_scrollFlags="enterAlways|scroll" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/imageView_producto"
+        android:layout_width="match_parent"
+        android:layout_height="463dp"
+        android:layout_below="@+id/top_app"
+        android:layout_gravity="center"
+        android:layout_marginTop="85dp"
+        app:srcCompat="@drawable/iphone1" />
+
+    <include
+        layout="@layout/custom_back_button"
+        android:id="@+id/button_regresar"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView_producto"
+        android:layout_marginTop="40dp"/>
+
+
+</RelativeLayout>
