@@ -1,6 +1,7 @@
 package com.example.proyectofinal
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -55,6 +56,10 @@ class GestionProductoActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategoria.adapter = adapter
+        val backButton = findViewById<Button>(R.id.button_regresar_management)
+        backButton?.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         //buscar
 
         btnBuscar.setOnClickListener { buscarProducto() }
@@ -70,6 +75,7 @@ class GestionProductoActivity : AppCompatActivity() {
             val codigo = etCodigoBusqueda.text.toString().trim()
             if (codigo.isNotEmpty()) {
                 consultarProducto(codigo)
+                limpiarCampos()
             } else {
                 Toast.makeText(this, "Ingrese un código de producto", Toast.LENGTH_SHORT).show()
             }

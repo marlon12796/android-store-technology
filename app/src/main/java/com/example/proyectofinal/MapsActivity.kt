@@ -1,6 +1,8 @@
 package com.example.proyectofinal
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
@@ -27,6 +29,10 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val backButton = findViewById<Button>(R.id.button_regresar_maps)
+        backButton?.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -48,7 +54,7 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     private fun createMarker() {
         val favoritePlace = LatLng(-6.766589, -79.839702) // Coordenadas para el marcador
-        map.addMarker(MarkerOptions().position(favoritePlace).title("Mi Casa!"))
+        map.addMarker(MarkerOptions().position(favoritePlace).title("TECHVERSE"))
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(favoritePlace, 18f))
     }
 }

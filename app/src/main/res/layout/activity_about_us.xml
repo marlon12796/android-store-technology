@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:id="@+id/about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutUs">
+
+    <!-- AppBar con Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
         android:id="@+id/top_app_techverse"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
@@ -21,6 +23,8 @@
             android:titleTextColor="@android:color/white"
             app:layout_scrollFlags="enterAlways|scroll" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Título "Sobre Nosotros" -->
     <TextView
         android:id="@+id/title_about_us"
         android:layout_width="wrap_content"
@@ -31,7 +35,7 @@
         android:text="SOBRE NOSOTROS"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black" />
 
     <!-- Imagen del negocio -->
     <ImageView
@@ -42,7 +46,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/illustration_picture" />
+        app:srcCompat="@drawable/imagen" />
 
     <!-- Descripción del negocio -->
     <TextView
@@ -50,9 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_techverse"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-
+        android:layout_margin="16dp"
         android:layout_marginTop="32dp"
         android:text="TechVerse es una tienda líder en tecnología, ofreciendo los últimos productos en smartphones, laptops, periféricos y más. Nuestro compromiso es brindar innovación y calidad a nuestros clientes."
         android:textAlignment="center"
@@ -60,14 +62,13 @@
         android:textSize="22sp" />
 
     <!-- Botón de regresar -->
-
     <include
-        layout="@layout/custom_back_button"
         android:id="@+id/button_regresar_about"
+        layout="@layout/custom_back_button"
         android:layout_width="175dp"
         android:layout_height="65dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/text_about_techverse"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp" />
 
 </RelativeLayout>

@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E5E4E2">
+
+    <!-- Opción de Google Maps -->
     <item
         android:id="@+id/google_maps"
         android:icon="@drawable/google_maps_svgrepo_com"
         android:title="@string/google_maps"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
+    <!-- Opción "Sobre Nosotros" -->
     <item
         android:id="@+id/about_us"
         android:icon="@drawable/about_us"
         android:title="@string/sobre_nosotros"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
+    <!-- Opción de Cerrar -->
     <item
         android:id="@+id/close_up"
-        android:icon="@drawable/close_square_svgrepo_com"
+        android:icon="@drawable/close"
         android:title="@string/close"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
+    <!-- Opciones de Listado y Gestión -->
     <item
         android:id="@+id/list_products"
         android:title="Listar Productos"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/list_ventas_menu"
         android:title="Listar Ventas"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/gestion_producto"
-        android:title="Gestion Producto"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/gestion_venta_menu"
+        android:title="Gestión Producto"
+        app:showAsAction="never" />
+    <item    android:id="@+id/gestion_venta_menu"
         android:title="Gestion Venta"
         app:showAsAction="never"/>
 </menu>

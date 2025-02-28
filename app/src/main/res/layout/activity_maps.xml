@@ -31,5 +31,10 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"
         tools:context=".MapsActivity"/>
-
+    <include    layout="@layout/custom_back_button"
+        android:id="@+id/button_regresar_maps"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

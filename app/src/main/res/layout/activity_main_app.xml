@@ -16,12 +16,21 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#ffffbb33"
             android:title="Mi Tienda"
             android:titleTextColor="@android:color/white"
             app:layout_scrollFlags="enterAlways|scroll" />
     </com.google.android.material.appbar.AppBarLayout>
-
+    <TextView
+        android:id="@+id/title_app_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="TechVerse"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
     <ImageView
         android:id="@+id/imageView_producto"
         android:layout_width="match_parent"
