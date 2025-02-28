@@ -2,6 +2,7 @@ package com.example.proyectofinal
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -34,6 +35,10 @@ class GestionVentaActivity : AppCompatActivity() {
     private lateinit var edtIgv: TextView
     private lateinit var edtTotal: TextView
     private lateinit var btnBuscarVenta: Button
+    private lateinit var btnEliminarVenta: Button
+    private lateinit var  edtCantidad : TextView
+    private lateinit var edtDescuento : TextView
+    private lateinit var dbDescuento : CheckBox
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -55,6 +60,7 @@ class GestionVentaActivity : AppCompatActivity() {
         edtTotal = findViewById(R.id.tvTotal)
         btnBuscarVenta = findViewById(R.id.btnBuscarVenta)
 
+        btnEliminarVenta = findViewById(R.id.btnEliminarVenta)
         etCodigoProducto = findViewById(R.id.etCodigoProducto)
 
         // Cargar productos en segundo plano
@@ -65,6 +71,14 @@ class GestionVentaActivity : AppCompatActivity() {
                 buscarVenta(codigoVenta)
             } else {
                 Toast.makeText(this, "Ingrese un código de venta", Toast.LENGTH_SHORT).show()
+            }
+        }
+        btnEliminarVenta.setOnClickListener {
+            val codigoVenta = edtCodigo.text.toString().trim()
+            if (codigoVenta.isNotEmpty()) {
+                mostrarDialogoConfirmacion(codigoVenta) // Mostrar diálogo de confirmación
+            } else {
+                Toast.makeText(this, "No hay una venta seleccionada para eliminar", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -178,5 +192,55 @@ class GestionVentaActivity : AppCompatActivity() {
         builder.setTitle("Seleccionar Producto")
         builder.setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
         builder.create().show()
+    }
+    private fun mostrarDialogoConfirmacion(codigoVenta: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Eliminar Venta")
+        builder.setMessage("¿Estás seguro de que deseas eliminar esta venta?")
+        builder.setPositiveButton("Sí") { _, _ ->
+            eliminarVenta(codigoVenta)
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+    private fun eliminarVenta(codigoVenta: String) {
+        val url = "${EndPoints.DELETE_SALES}/$codigoVenta"
+
+        val request = JsonObjectRequest(
+            Request.Method.DELETE, url, null,
+            { response ->
+                try {
+                    val mensaje = response.getString("message")
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+
+                    // Limpiar los campos después de eliminar la venta
+                    limpiarCamposVenta()
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                error.printStackTrace()
+                Toast.makeText(this, "Error al eliminar la venta", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        VolleySingleton.getInstance(this).addToRequestQueue(request)
+    }
+    private fun limpiarCamposVenta() {
+        edtCodigo.setText("")
+        edtNumeroDocumento.setText("")
+        edtFechaEmision.setText("")
+        edtCliente.setText("")
+        edtSubtotal.setText("")
+        edtIgv.setText("")
+        edtTotal.setText("")
+        etCodigoProducto.setText("")
+        edtCantidad.setText("")
+        edtPrecioProducto.setText("")
+        cbDescuento.isChecked = false
     }
 }
