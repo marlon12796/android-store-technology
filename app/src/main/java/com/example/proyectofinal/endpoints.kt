@@ -7,4 +7,5 @@ object EndPoints {
     val GET_PRODUCTS = URL_ROOT + "products"
     val GET_SALES = URL_ROOT+"sales"
     val DELETE_SALES= URL_ROOT+"sales"
+    val POST_SALES  = URL_ROOT +"sales"
 }

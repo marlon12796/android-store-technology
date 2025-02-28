@@ -1,6 +1,4 @@
 package com.example.proyectofinal
-
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
@@ -17,23 +15,18 @@ import com.android.volley.Request
 import com.android.volley.Response
 
 class LoginActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.login_activity)
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         val editTextUsuario = findViewById<EditText>(R.id.editTextUsuario)
         val editTextContraseña = findViewById<EditText>(R.id.editTextContraseña)
         val buttonLogin = findViewById<MaterialButton>(R.id.buttonLogin)
-        val buttonExit = findViewById<MaterialButton>(R.id.buttonCerrar)
-
         buttonLogin.setOnClickListener {
             val correo = editTextUsuario.text.toString().trim()
             val contrasena = editTextContraseña.text.toString().trim()
@@ -44,12 +37,7 @@ class LoginActivity : AppCompatActivity() {
                 iniciarSesion(correo, contrasena)
             }
         }
-
-        buttonExit.setOnClickListener {
-            mostrarDialogoSalir()
-        }
     }
-
     private fun iniciarSesion(correo: String, contrasena: String) {
         val jsonRequest = JSONObject().apply {
             put("correo", correo)
@@ -81,12 +69,4 @@ class LoginActivity : AppCompatActivity() {
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
 
-    private fun mostrarDialogoSalir() {
-        AlertDialog.Builder(this)
-            .setTitle("Salir de la aplicación")
-            .setMessage("¿Estás seguro de que quieres salir?")
-            .setPositiveButton("Sí") { _, _ -> finishAffinity() }
-            .setNegativeButton("No", null)
-            .show()
-    }
 }
