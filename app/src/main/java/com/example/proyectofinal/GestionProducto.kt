@@ -1,6 +1,5 @@
 package com.example.proyectofinal
 
-
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +29,8 @@ class GestionProductoActivity : AppCompatActivity() {
     private lateinit var etStock: EditText
     private lateinit var spinnerCategoria: Spinner
     private lateinit var btnAgregar: Button
-
+    private lateinit var btnEditar: Button
+    private lateinit var btnBuscar: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gestion_producto)
@@ -46,21 +46,27 @@ class GestionProductoActivity : AppCompatActivity() {
         etStock = findViewById(R.id.etStock)
         spinnerCategoria = findViewById(R.id.spinnerCategoria)
         btnAgregar = findViewById(R.id.btnAgregar)
+        btnBuscar = findViewById(R.id.btnBuscar)
         etCodigoBusqueda = findViewById(R.id.etCodigoBusqueda)
         btnEliminar = findViewById(R.id.btnEliminar)
+        btnEditar= findViewById(R.id.btnEditar)
         val spinnerCategoria: Spinner = findViewById(R.id.spinnerCategoria)
         // Opciones del Spinner
         val categorias = listOf("laptop", "celular", "tablet", "monitor", "accesorio", "otro")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategoria.adapter = adapter
+        //buscar
+
+        btnBuscar.setOnClickListener { buscarProducto() }
          // agregar
         btnAgregar.setOnClickListener {
             agregarProducto()
         }
+        btnEditar.setOnClickListener{
+            editarProducto()
+        }
         // eliminar
-
-        spinnerCategoria.adapter = adapter
         btnEliminar.setOnClickListener {
             val codigo = etCodigoBusqueda.text.toString().trim()
             if (codigo.isNotEmpty()) {
@@ -196,7 +202,6 @@ class GestionProductoActivity : AppCompatActivity() {
         VolleySingleton.getInstance(this).addToRequestQueue(request)
     }
 
-
     private fun limpiarCampos() {
         etCodigo.text.clear()
         etNombre.text.clear()
@@ -204,5 +209,73 @@ class GestionProductoActivity : AppCompatActivity() {
         etPrecio.text.clear()
         etStock.text.clear()
         spinnerCategoria.setSelection(0)
+    }
+    private fun buscarProducto() {
+        val codigo = etCodigoBusqueda.text.toString()
+        if (codigo.isEmpty()) {
+            mostrarError("Ingrese un código de producto")
+            return
+        }
+
+        val url = "http://192.168.18.6:4500/products/$codigo"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val request = JsonObjectRequest(Request.Method.GET, url, null, { response ->
+            val success = response.getBoolean("success")
+            if (success) {
+                val data = response.getJSONObject("data")
+                etNombre.setText(data.getString("nombre"))
+                etCodigo.setText(data.getString("codigo"))
+                etDescripcion.setText(data.getString("descripcion"))
+                etPrecio.setText(data.getString("precio"))
+                etStock.setText(with(data) { getInt("stock").toString() })
+                seleccionarCategoria(data.getString("categoria"))
+            } else {
+                mostrarError("Producto no encontrado")
+            }
+        }, { error ->
+            mostrarError("Error al buscar el producto")
+        })
+
+        requestQueue.add(request)
+    }
+    private fun mostrarError(mensaje: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Error")
+            .setMessage(mensaje)
+            .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+    private fun editarProducto() {
+        val codigo = etCodigo.text.toString()
+        if (codigo.isEmpty()) {
+            mostrarError("Ingrese un código de producto")
+            return
+        }
+
+        val url = "http://192.168.18.6:4500/products/$codigo"
+        val requestQueue = Volley.newRequestQueue(this)
+
+        val params = JSONObject().apply {
+            put("nombre", etNombre.text.toString().trim())
+            put("descripcion", etDescripcion.text.toString().trim())
+            put("precio", etPrecio.text.toString().trim().toDoubleOrNull())
+            put("stock", etStock.text.toString().toInt())
+            put("categoria", spinnerCategoria.selectedItem.toString())
+        }
+
+        val request = JsonObjectRequest(Request.Method.PATCH, url, params, { response ->
+            Toast.makeText(this, "Producto actualizado con éxito", Toast.LENGTH_LONG).show()
+        }, { error ->
+            mostrarError("Error al actualizar el producto")
+        })
+
+        requestQueue.add(request)
+    }
+
+    private fun seleccionarCategoria(categoria: String) {
+        val adapter = spinnerCategoria.adapter as ArrayAdapter<String>
+        val position = adapter.getPosition(categoria)
+        if (position >= 0) spinnerCategoria.setSelection(position)
     }
 }
