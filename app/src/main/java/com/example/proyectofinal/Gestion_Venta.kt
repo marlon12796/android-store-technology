@@ -1,7 +1,9 @@
 package com.example.proyectofinal
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +16,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONException
 import com.android.volley.Request
+import com.android.volley.Response
 import com.example.appbasedatosmysql2025.EndPoints
 
 class GestionVentaActivity : AppCompatActivity() {
@@ -21,8 +24,16 @@ class GestionVentaActivity : AppCompatActivity() {
     private lateinit var etCodigoProducto: EditText
     private lateinit var requestQueue: RequestQueue
     private val productList = mutableListOf<Product>()
-    private var productosCargados = false // Indica si ya se cargaron los productos
-
+    private var productosCargados = false
+    private lateinit var etCodigoBusquedaVenta: EditText
+    private lateinit var edtCodigo: EditText
+    private lateinit var edtNumeroDocumento: EditText
+    private lateinit var edtFechaEmision: EditText
+    private lateinit var edtCliente: EditText
+    private lateinit var edtSubtotal: TextView
+    private lateinit var edtIgv: TextView
+    private lateinit var edtTotal: TextView
+    private lateinit var btnBuscarVenta: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,13 +44,30 @@ class GestionVentaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Referencias a los elementos de la interfaz
+        etCodigoBusquedaVenta = findViewById(R.id.etCodigoBusquedaVenta)
+        edtCodigo = findViewById(R.id.etCodigoVenta)
+        edtNumeroDocumento = findViewById(R.id.etNroDocumento)
+        edtFechaEmision = findViewById(R.id.etFecha)
+        edtCliente = findViewById(R.id.etCliente)
+        edtSubtotal = findViewById(R.id.tvSubtotal)
+        edtIgv = findViewById(R.id.tvIgv)
+        edtTotal = findViewById(R.id.tvTotal)
+        btnBuscarVenta = findViewById(R.id.btnBuscarVenta)
 
         etCodigoProducto = findViewById(R.id.etCodigoProducto)
 
         // Cargar productos en segundo plano
         cargarProductos()
+        btnBuscarVenta.setOnClickListener {
+            val codigoVenta = etCodigoBusquedaVenta.text.toString().trim()
+            if (codigoVenta.isNotEmpty()) {
+                buscarVenta(codigoVenta)
+            } else {
+                Toast.makeText(this, "Ingrese un código de venta", Toast.LENGTH_SHORT).show()
+            }
+        }
 
-        // Mostrar diálogo solo cuando el usuario haga clic
         etCodigoProducto.setOnClickListener {
             if (productosCargados) {
                 mostrarDialogoProductos()
@@ -48,7 +76,44 @@ class GestionVentaActivity : AppCompatActivity() {
             }
         }
     }
+    private fun buscarVenta(codigoVenta: String) {
+        val url = EndPoints.GET_SALES +"/$codigoVenta"
 
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                try {
+                    // Obtener datos del JSON
+                    val codigo = response.getString("codigo")
+                    val numeroDocumento = response.getString("numeroDocumento")
+                    val fechaEmision = response.getString("fechaEmision")
+                    val cliente = response.getString("cliente")
+                    val subtotal = response.getString("subtotal")
+                    val igv = response.getString("igv")
+                    val total = response.getString("total")
+
+                    // Llenar los campos del formulario
+                    edtCodigo.setText(codigo)
+                    edtNumeroDocumento.setText(numeroDocumento)
+                    edtFechaEmision.setText(fechaEmision)
+                    edtCliente.setText(cliente)
+                    edtSubtotal.setText(subtotal)
+                    edtIgv.setText(igv)
+                    edtTotal.setText(total)
+
+                    Toast.makeText(this, "Venta cargada exitosamente", Toast.LENGTH_SHORT).show()
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    Toast.makeText(this, "Error al procesar los datos", Toast.LENGTH_SHORT).show()
+                }
+            },
+            { error ->
+                error.printStackTrace()
+                Toast.makeText(this, "No se encontró la venta", Toast.LENGTH_SHORT).show()
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(request)
+    }
     private fun cargarProductos() {
         val url = EndPoints.GET_PRODUCTS // Reemplaza con tu API real
 
