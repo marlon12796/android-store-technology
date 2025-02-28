@@ -33,7 +33,7 @@
 
     <include
         layout="@layout/custom_back_button"
-        android:id="@+id/button_regresar"
+        android:id="@+id/button_regresar_main"
         android:layout_width="175dp"
         android:layout_height="65dp"
         android:layout_centerHorizontal="true"
