@@ -30,4 +30,8 @@
         android:id="@+id/gestion_producto"
         android:title="Gestion Producto"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/gestion_venta_menu"
+        android:title="Gestion Venta"
+        app:showAsAction="never"/>
 </menu>

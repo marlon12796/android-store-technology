@@ -19,6 +19,9 @@
         android:theme="@style/Theme.ProyectoFinal"
         tools:targetApi="31">
         <activity
+            android:name=".GestionVentaActivity"
+            android:exported="false" />
+        <activity
             android:name=".GestionProductoActivity"
             android:exported="false" />
         <activity

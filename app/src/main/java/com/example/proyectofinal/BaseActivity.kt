@@ -44,6 +44,10 @@ open class BaseActivity : AppCompatActivity() {
             R.id.gestion_producto -> {
                 startActivity(Intent(this,GestionProductoActivity::class.java))
             }
+
+            R.id.gestion_venta_menu -> {
+                startActivity(Intent(this,GestionVentaActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
     }

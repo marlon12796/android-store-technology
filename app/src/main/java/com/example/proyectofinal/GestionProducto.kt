@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.appbasedatosmysql2025.EndPoints
 import org.json.JSONException
 import org.json.JSONObject
 
 class GestionProductoActivity : AppCompatActivity() {
-
     private lateinit var etCodigoBusqueda: EditText
     private lateinit var btnEliminar: Button
     private lateinit var etCodigo: EditText
@@ -78,7 +77,7 @@ class GestionProductoActivity : AppCompatActivity() {
     }
 
     private fun consultarProducto(codigo: String) {
-        val url = "http://192.168.18.6:4500/products/$codigo"
+        val url = EndPoints.GET_PRODUCTS+"/$codigo"
 
         val request = JsonObjectRequest(Request.Method.GET, url, null,
             { response ->
@@ -123,7 +122,7 @@ class GestionProductoActivity : AppCompatActivity() {
     }
 
     private fun eliminarProducto(codigo: String) {
-        val url = "http://192.168.18.6:4500/products/$codigo"
+        val url = EndPoints.GET_PRODUCTS+"/$codigo"
 
         val request = JsonObjectRequest(Request.Method.DELETE, url, null,
             { response ->
@@ -168,7 +167,7 @@ class GestionProductoActivity : AppCompatActivity() {
             put("categoria", categoria)
         }
 
-        val url = "http://192.168.18.6:4500/products"
+        val url = EndPoints.GET_PRODUCTS
 
         val request = JsonObjectRequest(Request.Method.POST, url, jsonRequest,
             { response ->
@@ -217,7 +216,7 @@ class GestionProductoActivity : AppCompatActivity() {
             return
         }
 
-        val url = "http://192.168.18.6:4500/products/$codigo"
+        val url = EndPoints.GET_PRODUCTS+"/$codigo"
         val requestQueue = Volley.newRequestQueue(this)
 
         val request = JsonObjectRequest(Request.Method.GET, url, null, { response ->
@@ -253,7 +252,7 @@ class GestionProductoActivity : AppCompatActivity() {
             return
         }
 
-        val url = "http://192.168.18.6:4500/products/$codigo"
+        val url = EndPoints.GET_PRODUCTS+ "/$codigo"
         val requestQueue = Volley.newRequestQueue(this)
 
         val params = JSONObject().apply {
