@@ -19,7 +19,7 @@
         android:theme="@style/Theme.ProyectoFinal"
         tools:targetApi="31">
         <activity
-            android:name=".GestionProducto"
+            android:name=".GestionProductoActivity"
             android:exported="false" />
         <activity
             android:name=".ActivitySaleList"

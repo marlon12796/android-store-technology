@@ -41,6 +41,9 @@ open class BaseActivity : AppCompatActivity() {
 
                 startActivity(Intent(this,ActivitySaleList::class.java))
             }
+            R.id.gestion_producto -> {
+                startActivity(Intent(this,GestionProductoActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
     }

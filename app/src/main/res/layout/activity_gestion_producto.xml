@@ -5,16 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
+    tools:context=".GestionProductoActivity"
+    android:background="@color/white"
+    android:id="@+id/gestion_producto_main">
 
-    <!-- Toolbar -->
+    <!-- Toolbar sin sombra -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:elevation="0dp"
         app:title="Gestión de Productos"
         app:titleTextColor="@android:color/white" />
 
@@ -30,11 +31,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Card para la búsqueda -->
+            <!-- Card para la búsqueda sin sombra -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -49,8 +52,7 @@
                         android:hint="Código del producto"
                         android:inputType="text"
                         android:padding="12dp"
-                        android:background="@drawable/edit_text_background"
-                        android:contentDescription="Campo para ingresar código del producto a buscar"/>
+                        android:background="@drawable/edit_text_background"/>
 
                     <Button
                         android:id="@+id/btnBuscar"
@@ -62,14 +64,15 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Card con los datos del producto -->
+            <!-- Card con los datos del producto sin sombra -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardElevation="4dp"
+                app:cardElevation="0dp"
                 app:cardCornerRadius="8dp"
                 android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@android:color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -105,16 +108,14 @@
                         android:padding="12dp"
                         android:layout_marginBottom="14dp"
                         android:background="@drawable/edit_text_background"/>
-
-                    <EditText
-                        android:id="@+id/etCategoria"
+                    <Spinner
+                        android:id="@+id/spinnerCategoria"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Categoría"
-                        android:inputType="text"
-                        android:padding="12dp"
                         android:layout_marginBottom="14dp"
-                        android:background="@drawable/edit_text_background"/>
+                        android:padding="12dp"
+                        android:background="@drawable/edit_text_background"
+                        android:textColor="@android:color/darker_gray"/>
 
                     <EditText
                         android:id="@+id/etPrecio"
