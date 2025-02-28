@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login"
@@ -8,6 +9,8 @@
     android:background="#050522"
     android:padding="0dp"
     tools:context=".LoginActivity">
+
+    <!-- Título principal -->
     <TextView
         android:id="@+id/mainTitle"
         android:layout_width="wrap_content"
@@ -18,6 +21,8 @@
         android:textColor="#FFFFFF"
         android:textSize="38sp"
         android:textStyle="bold" />
+
+    <!-- Imagen del logo -->
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="310dp"
@@ -25,20 +30,21 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:layout_below="@+id/mainTitle"
-        android:layout_marginEnd="0dp"
         android:layout_marginTop="20dp"
         android:contentDescription="Logo"
         android:src="@drawable/macbook_pro" />
+
+    <!-- Contenedor para los elementos del formulario -->
     <RelativeLayout
+        android:id="@+id/groupContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:id="@+id/groupContent"
         android:layout_below="@+id/imageViewLogo"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
 
+        <!-- Título del formulario -->
         <TextView
             android:id="@+id/textViewTitulo"
             android:layout_width="wrap_content"
@@ -48,6 +54,8 @@
             android:textColor="#FFFFFF"
             android:textSize="32sp"
             android:textStyle="bold" />
+
+        <!-- Campo de entrada para el usuario -->
         <EditText
             android:id="@+id/editTextUsuario"
             android:layout_width="match_parent"
@@ -57,9 +65,11 @@
             android:layout_marginTop="24dp"
             android:hint="Introduce usuario"
             android:textColorHint="#A6F4F4F4"
+            android:textColor="#A6F4F4F4"
             android:inputType="text"
             android:minHeight="48dp" />
 
+        <!-- Campo de entrada para la contraseña -->
         <EditText
             android:id="@+id/editTextContraseña"
             android:layout_width="match_parent"
@@ -68,35 +78,37 @@
             android:layout_marginTop="16dp"
             android:hint="Introduce contraseña"
             android:inputType="textPassword"
-
+            android:textColor="#A6F4F4F4"
             android:textColorHint="#A6F4F4F4"
             android:minHeight="48dp" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonCerrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cerrar"
-            android:textColor="#1B1A40"
-            app:backgroundTint="@android:color/holo_orange_light"
-            android:textSize="18sp"
-            android:padding="14dp"
-            android:layout_below="@id/editTextContraseña"
-            android:layout_marginTop="24dp"/>
+
+        <!-- Botón de inicio de sesión -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editTextContraseña"
+            android:layout_marginTop="12dp"
             android:text="Iniciar Sesión"
+            android:textColor="#1B1A40"
+            app:backgroundTint="@android:color/holo_orange_light"
+            app:strokeWidth="3dp"
+            android:textSize="18sp"
+            android:padding="14dp" />
+
+        <!-- Botón de cierre -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCerrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonLogin"
+            android:layout_marginTop="10dp"
+            android:text="Cerrar"
             android:textColor="@android:color/holo_orange_light"
             app:backgroundTint="@android:color/transparent"
             app:strokeColor="@android:color/holo_orange_light"
             app:strokeWidth="3dp"
             android:textSize="18sp"
-            android:padding="14dp"
-            android:layout_below="@id/buttonCerrar"
-            android:layout_marginTop="12dp"/>
-
-
+            android:padding="14dp" />
     </RelativeLayout>
-
 </RelativeLayout>
