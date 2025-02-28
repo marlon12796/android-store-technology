@@ -240,7 +240,6 @@ class GestionVentaActivity : AppCompatActivity() {
         edtTotal.setText("")
         etCodigoProducto.setText("")
         edtCantidad.setText("")
-        edtPrecioProducto.setText("")
-        cbDescuento.isChecked = false
+
     }
 }
